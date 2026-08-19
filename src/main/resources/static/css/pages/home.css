@@ -25,27 +25,35 @@
     gap: 12px;
 }
 
+.welcome-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
 .welcome-logo-frame {
-    width: 46px;
-    height: 46px;
+    width: 72px;
+    height: 72px;
+    border-radius: 20px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
-    border-radius: 14px;
-    background: #fff;
-    box-shadow: 0 8px 24px rgba(31,38,48,.12);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 .welcome-logo-frame img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    object-position: center;
-    transform: translate(-52px, -52px);
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+    display: block;
 }
 
 .welcome-product {
-    color: var(--slynk-dark);
-    font-weight: 850;
-    letter-spacing: -.03em;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1f2937;
 }
 
 .welcome-copy {

@@ -19,6 +19,7 @@ public class Vaga implements Serializable {
     private String nome;
 
     @NotEmpty
+    @Column(columnDefinition = "TEXT")
     private String descricao;
 
     @NotEmpty

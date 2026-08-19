@@ -1,0 +1,213 @@
+/* Estrutura principal: shell, sidebar, topbar e containers. */
+
+.app-shell {
+    min-height: 100vh;
+}
+
+.app-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: var(--sidebar-width);
+    z-index: 1030;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 18px;
+    color: #fff;
+    background:
+        radial-gradient(circle at 10% 0%, rgba(48, 130, 249, 0.23), transparent 34%),
+        linear-gradient(180deg, #29313b 0%, #1f2630 100%);
+    border-right: 1px solid rgba(255,255,255,.06);
+    transition: transform .25s ease;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 34px;
+    padding: 4px 8px;
+    color: #fff;
+}
+
+.brand:hover {
+    color: #fff;
+}
+
+.brand-logo-frame {
+    width: 48px;
+    height: 48px;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 8px 18px rgba(0,0,0,.18);
+}
+
+.brand-logo-frame img {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.brand-copy {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.brand-copy strong {
+    font-size: 1.02rem;
+    letter-spacing: -.02em;
+}
+
+.brand-copy small {
+    color: rgba(255,255,255,.58);
+    font-size: .74rem;
+}
+
+.sidebar-nav {
+    display: grid;
+    gap: 8px;
+}
+
+.nav-link-app {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 46px;
+    padding: 0 14px;
+    border-radius: 12px;
+    color: rgba(255,255,255,.72);
+    font-weight: 600;
+    font-size: .93rem;
+    transition: .18s ease;
+}
+
+.nav-link-app i {
+    font-size: 1.05rem;
+}
+
+.nav-link-app:hover {
+    color: #fff;
+    background: rgba(255,255,255,.07);
+}
+
+.nav-link-app.active {
+    color: #fff;
+    background: linear-gradient(135deg, #3082f9, #5265f6);
+    box-shadow: 0 10px 24px rgba(48,130,249,.24);
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 20px;
+}
+
+.sidebar-company {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 14px 12px;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 14px;
+    background: rgba(255,255,255,.045);
+}
+
+.sidebar-company > span:last-child {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-company strong {
+    color: #fff;
+    font-size: .84rem;
+}
+
+.sidebar-company small {
+    color: rgba(255,255,255,.54);
+    font-size: .7rem;
+}
+
+.company-avatar {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: #fff;
+    color: var(--slynk-blue);
+    font-size: .72rem;
+    font-weight: 800;
+}
+
+.app-main {
+    min-height: 100vh;
+    margin-left: var(--sidebar-width);
+}
+
+.app-topbar {
+    min-height: 112px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 24px clamp(24px, 4vw, 48px);
+    background: rgba(255,255,255,.88);
+    border-bottom: 1px solid var(--slynk-border);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 1010;
+}
+
+.page-title {
+    margin: 0;
+    color: var(--slynk-dark);
+    font-size: clamp(1.45rem, 2vw, 1.9rem);
+    font-weight: 800;
+    letter-spacing: -.035em;
+}
+
+.page-subtitle {
+    margin-top: 4px;
+    color: var(--slynk-muted);
+    font-size: .88rem;
+}
+
+.eyebrow,
+.section-kicker {
+    color: var(--slynk-blue);
+    font-size: .72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+}
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    color: #445160;
+    font-size: .78rem;
+    font-weight: 700;
+    border: 1px solid var(--slynk-border);
+    border-radius: 999px;
+    background: #fff;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #27ae78;
+    box-shadow: 0 0 0 4px rgba(39,174,120,.12);
+}
+
+.content-container {
+    width: min(100%, 1440px);
+    margin: 0 auto;
+    padding: 34px clamp(20px, 4vw, 48px) 54px;
+}

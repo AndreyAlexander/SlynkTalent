@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Cadastrar vaga')}"></head>
+<body>
+<div class="app-shell">
+    <aside th:replace="~{fragments/layout :: sidebar('cadastrar')}"></aside>
+
+    <main class="app-main">
+        <header th:replace="~{fragments/layout :: topbar('Cadastrar vaga', 'Publique uma nova oportunidade para o time de recrutamento.')}"></header>
+
+        <section class="content-container">
+            <div th:replace="~{fragments/layout :: flash}"></div>
+
+            <div class="content-grid form-page-grid">
+                <section class="app-card form-card">
+                    <div class="card-heading">
+                        <div>
+                            <span class="section-kicker">Nova oportunidade</span>
+                            <h2>Informações da vaga</h2>
+                            <p>Preencha os dados principais. Todos os campos são obrigatórios.</p>
+                        </div>
+                        <span class="icon-badge"><i class="bi bi-briefcase-fill"></i></span>
+                    </div>
+
+                    <form th:action="@{/cadastrarVaga}" method="post" class="needs-validation" novalidate>
+                        <div class="row g-4">
+                            <div class="col-12">
+                                <label for="nome" class="form-label">Nome da vaga</label>
+                                <input id="nome" name="nome" type="text" class="form-control app-input"
+                                       placeholder="Ex.: Desenvolvedor Java Júnior" required maxlength="120">
+                                <div class="invalid-feedback">Informe o nome da vaga.</div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="descricao" class="form-label">Descrição</label>
+                                <textarea id="descricao" name="descricao" class="form-control app-input"
+                                          rows="5" placeholder="Descreva responsabilidades, requisitos e diferenciais."
+                                          required></textarea>
+                                <div class="form-hint">Seja objetivo e facilite a leitura para quem vai se candidatar.</div>
+                                <div class="invalid-feedback">Informe a descrição da vaga.</div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="salario" class="form-label">Salário</label>
+                                <div class="input-group app-input-group">
+                                    <span class="input-group-text">R$</span>
+                                    <input id="salario" name="salario" type="text" class="form-control app-input"
+                                           placeholder="4.500,00" required inputmode="decimal">
+                                </div>
+                                <div class="invalid-feedback">Informe o salário.</div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="data" class="form-label">Data de expiração</label>
+                                <input id="data" name="data" type="date" class="form-control app-input" required>
+                                <div class="invalid-feedback">Informe a data de expiração.</div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <a th:href="@{/vagas}" class="btn btn-light app-btn-secondary">
+                                <i class="bi bi-arrow-left"></i>
+                                Voltar
+                            </a>
+
+                            <button type="submit" class="btn app-btn-primary">
+                                <i class="bi bi-check2-circle"></i>
+                                Cadastrar vaga
+                            </button>
+                        </div>
+                    </form>
+                </section>
+
+                <aside class="app-card helper-card">
+                    <div class="helper-illustration">
+                        <i class="bi bi-stars"></i>
+                    </div>
+                    <h3>Uma boa vaga é clara</h3>
+                    <p>Use um título objetivo, descreva as principais responsabilidades e mantenha as informações essenciais fáceis de localizar.</p>
+
+                    <ul class="helper-list">
+                        <li><i class="bi bi-check2"></i> Título direto</li>
+                        <li><i class="bi bi-check2"></i> Descrição organizada</li>
+                        <li><i class="bi bi-check2"></i> Salário transparente</li>
+                        <li><i class="bi bi-check2"></i> Prazo definido</li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
+    </main>
+</div>
+
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+</body>
+</html>

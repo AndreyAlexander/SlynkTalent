@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Detalhes da vaga')}"></head>
+<body>
+<div class="app-shell">
+    <aside th:replace="~{fragments/layout :: sidebar('vagas')}"></aside>
+
+    <main class="app-main">
+        <header th:replace="~{fragments/layout :: topbar('Detalhes da vaga', 'Visualize a oportunidade e os candidatos inscritos.')}"></header>
+
+        <section class="content-container">
+            <div th:replace="~{fragments/layout :: flash}"></div>
+
+            <div class="details-header app-card">
+                <div class="details-title">
+                    <span class="job-avatar large"><i class="bi bi-briefcase-fill"></i></span>
+                    <div>
+                        <span class="section-kicker">Vaga ativa</span>
+                        <h2 th:text="${vaga.nome}">Nome da vaga</h2>
+                        <p class="mb-0">Código <strong th:text="${vaga.codigo}">—</strong></p>
+                    </div>
+                </div>
+
+                <div class="details-actions">
+                    <a th:href="@{/editar-vaga(codigo=${vaga.codigo})}" class="btn app-btn-secondary">
+                        <i class="bi bi-pencil"></i> Editar
+                    </a>
+                    <a th:href="@{/deletarVaga(codigo=${vaga.codigo})}" class="btn app-btn-danger"
+                       data-confirm-delete="Tem certeza que deseja excluir esta vaga?">
+                        <i class="bi bi-trash3"></i> Excluir
+                    </a>
+                </div>
+            </div>
+
+            <div class="details-grid">
+                <section class="app-card details-card">
+                    <div class="card-heading compact">
+                        <div>
+                            <span class="section-kicker">Resumo</span>
+                            <h2>Informações da vaga</h2>
+                        </div>
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span>Salário</span>
+                            <strong th:text="${vaga.salario}">Salário informado</strong>
+                        </div>
+                        <div class="info-item">
+                            <span>Data de expiração</span>
+                            <strong th:text="${vaga.data}">Data informada</strong>
+                        </div>
+                        <div class="info-item full">
+                            <span>Descrição</span>
+                            <p th:text="${vaga.descricao}">Descrição da oportunidade.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="app-card candidate-form-card" aria-labelledby="candidate-form-title">
+                    <div class="card-heading compact">
+                        <div>
+                            <span class="section-kicker">Inscrição</span>
+                            <h2 id="candidate-form-title">Adicionar candidato</h2>
+                            <p>Cadastre uma pessoa diretamente nesta vaga.</p>
+                        </div>
+                    </div>
+
+                    <form th:action="@{/{codigo}(codigo=${vaga.codigo})}" method="post"
+                          class="needs-validation" novalidate>
+                        <div class="mb-3">
+                            <label for="nomeCandidato" class="form-label">Nome completo</label>
+                            <input id="nomeCandidato" name="nomeCandidato" class="form-control app-input"
+                                   type="text" placeholder="Nome do candidato" autocomplete="name" required>
+                            <div class="invalid-feedback">Informe o nome do candidato.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="rg" class="form-label">RG</label>
+                            <input id="rg" name="rg" class="form-control app-input"
+                                   type="text" placeholder="00.000.000-0" autocomplete="off" required>
+                            <div class="invalid-feedback">Informe o RG do candidato.</div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="email" class="form-label">E-mail</label>
+                            <input id="email" name="email" class="form-control app-input"
+                                   type="email" placeholder="nome@email.com" autocomplete="email" required>
+                            <div class="invalid-feedback">Informe um e-mail válido.</div>
+                        </div>
+
+                        <button type="submit" class="btn app-btn-primary w-100">
+                            <i class="bi bi-person-plus"></i>
+                            Adicionar candidato
+                        </button>
+                    </form>
+                </section>
+            </div>
+
+            <section class="app-card table-card mt-4">
+                <div class="table-toolbar">
+                    <div>
+                        <span class="section-kicker">Candidatos</span>
+                        <h2 class="section-title small-title">Inscritos nesta vaga</h2>
+                    </div>
+                    <div class="search-box">
+                        <i class="bi bi-search"></i>
+                        <input type="search" placeholder="Buscar candidato..." aria-label="Buscar candidato" data-table-search>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table app-table align-middle mb-0" data-search-table>
+                        <thead>
+                        <tr>
+                            <th>Candidato</th>
+                            <th>RG</th>
+                            <th>E-mail</th>
+                            <th class="text-end">Ações</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="candidato : ${candidatos}">
+                            <td>
+                                <div class="candidate-cell">
+                                    <span class="candidate-avatar"
+                                          th:text="${#strings.isEmpty(candidato.nomeCandidato) ? '?' : #strings.substring(candidato.nomeCandidato, 0, 1)}">?</span>
+                                    <strong th:text="${candidato.nomeCandidato}">Candidato</strong>
+                                </div>
+                            </td>
+                            <td th:text="${candidato.rg}">RG informado</td>
+                            <td>
+                                <a class="email-link" th:href="'mailto:' + ${candidato.email}"
+                                   th:text="${candidato.email}">E-mail informado</a>
+                            </td>
+                            <td>
+                                <div class="table-actions">
+                                    <a class="btn btn-sm action-btn danger"
+                                       th:href="@{/deletarCandidato(rg=${candidato.rg})}"
+                                       data-confirm-delete="Remover este candidato da vaga?"
+                                       title="Remover candidato" aria-label="Remover candidato">
+                                        <i class="bi bi-trash3"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr th:if="${candidatos == null || #lists.isEmpty(candidatos)}">
+                            <td colspan="4">
+                                <div class="empty-state compact">
+                                    <span class="empty-icon"><i class="bi bi-people"></i></span>
+                                    <h3>Nenhum candidato inscrito</h3>
+                                    <p>Ainda não há candidatos vinculados a esta vaga.</p>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr class="d-none" data-search-empty>
+                            <td colspan="4">
+                                <div class="empty-state compact">
+                                    <span class="empty-icon"><i class="bi bi-search"></i></span>
+                                    <h3>Nenhum resultado</h3>
+                                    <p>Tente buscar por outro termo.</p>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <div class="mt-4">
+                <a th:href="@{/vagas}" class="text-link">
+                    <i class="bi bi-arrow-left"></i>
+                    Voltar para vagas
+                </a>
+            </div>
+        </section>
+    </main>
+</div>
+
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+</body>
+</html>

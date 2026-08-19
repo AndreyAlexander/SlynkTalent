@@ -1,0 +1,225 @@
+/* Cards, formulários, botões e componentes reutilizáveis. */
+
+.app-card {
+    border: 1px solid var(--slynk-border);
+    border-radius: var(--slynk-radius);
+    background: #fff;
+    box-shadow: var(--slynk-shadow);
+}
+
+.content-grid {
+    display: grid;
+    gap: 24px;
+}
+
+.form-page-grid {
+    grid-template-columns: minmax(0, 1fr) 320px;
+}
+
+.form-card {
+    padding: clamp(22px, 3vw, 34px);
+}
+
+.single-form-card {
+    max-width: 920px;
+}
+
+.card-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+    padding-bottom: 26px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid var(--slynk-border);
+}
+
+.card-heading.compact {
+    padding-bottom: 18px;
+    margin-bottom: 20px;
+}
+
+.card-heading h2,
+.section-title {
+    margin: 5px 0 4px;
+    color: var(--slynk-dark);
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -.025em;
+}
+
+.card-heading p {
+    margin: 0;
+    color: var(--slynk-muted);
+    font-size: .88rem;
+}
+
+.icon-badge {
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 15px;
+    color: var(--slynk-blue);
+    background: var(--slynk-blue-100);
+    font-size: 1.2rem;
+}
+
+.form-label {
+    color: #344054;
+    font-size: .85rem;
+    font-weight: 700;
+}
+
+.app-input,
+.app-input-group .input-group-text {
+    min-height: 48px;
+    border-color: #dfe5ec;
+    border-radius: 11px;
+    background: #fff;
+    color: var(--slynk-text);
+    box-shadow: none !important;
+}
+
+textarea.app-input {
+    min-height: 126px;
+}
+
+.app-input:focus {
+    border-color: var(--slynk-blue);
+    box-shadow: 0 0 0 4px rgba(48,130,249,.12) !important;
+}
+
+.app-input-group .input-group-text {
+    display: flex;
+    align-items: center;
+    color: #667085;
+    border-radius: 11px 0 0 11px;
+}
+
+.app-input-group .app-input {
+    border-radius: 0 11px 11px 0;
+}
+
+.form-hint {
+    margin-top: 7px;
+    color: #8994a3;
+    font-size: .75rem;
+}
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 28px;
+    margin-top: 28px;
+    border-top: 1px solid var(--slynk-border);
+}
+
+.app-btn-primary,
+.app-btn-secondary,
+.app-btn-danger {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding-inline: 18px;
+    border-radius: 11px;
+    font-size: .86rem;
+    font-weight: 750;
+    border: 1px solid transparent;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+
+.app-btn-primary {
+    color: #fff;
+    background: linear-gradient(135deg, #3082f9, #5265f6);
+    box-shadow: 0 10px 24px rgba(48,130,249,.18);
+}
+
+.app-btn-primary:hover {
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 13px 28px rgba(48,130,249,.24);
+}
+
+.app-btn-secondary {
+    color: #3d4856;
+    background: #fff;
+    border-color: #dfe5ec;
+}
+
+.app-btn-secondary:hover {
+    color: var(--slynk-dark);
+    background: #f8fafc;
+    border-color: #cfd7e1;
+}
+
+.app-btn-danger {
+    color: #b92f3e;
+    background: #fff5f6;
+    border-color: #f3cbd0;
+}
+
+.app-btn-danger:hover {
+    color: #9f2634;
+    background: #ffecee;
+}
+
+.helper-card {
+    overflow: hidden;
+    padding: 28px;
+    align-self: start;
+    background:
+        radial-gradient(circle at 100% 0%, rgba(48,130,249,.12), transparent 40%),
+        #fff;
+}
+
+.helper-illustration {
+    width: 54px;
+    height: 54px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 20px;
+    border-radius: 17px;
+    color: #fff;
+    background: linear-gradient(135deg, #29313b, #3c4958);
+    font-size: 1.35rem;
+}
+
+.helper-card h3 {
+    color: var(--slynk-dark);
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+.helper-card p {
+    color: var(--slynk-muted);
+    font-size: .85rem;
+    line-height: 1.7;
+}
+
+.helper-list {
+    display: grid;
+    gap: 11px;
+    padding: 18px 0 0;
+    margin: 18px 0 0;
+    list-style: none;
+    border-top: 1px solid var(--slynk-border);
+}
+
+.helper-list li {
+    display: flex;
+    gap: 9px;
+    align-items: center;
+    color: #4a5664;
+    font-size: .82rem;
+    font-weight: 650;
+}
+
+.helper-list i {
+    color: var(--slynk-blue);
+}

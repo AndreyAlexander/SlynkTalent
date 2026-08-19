@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Vagas')}"></head>
+<body>
+<div class="app-shell">
+    <aside th:replace="~{fragments/layout :: sidebar('vagas')}"></aside>
+
+    <main class="app-main">
+        <header th:replace="~{fragments/layout :: topbar('Vagas', 'Acompanhe e gerencie as oportunidades cadastradas.')}"></header>
+
+        <section class="content-container">
+            <div th:replace="~{fragments/layout :: flash}"></div>
+
+            <div class="page-toolbar">
+                <div>
+                    <span class="section-kicker">Recrutamento</span>
+                    <h2 class="section-title">Oportunidades cadastradas</h2>
+                </div>
+
+                <a th:href="@{/cadastrarVaga}" class="btn app-btn-primary">
+                    <i class="bi bi-plus-lg"></i>
+                    Nova vaga
+                </a>
+            </div>
+
+            <section class="app-card table-card">
+                <div class="table-toolbar">
+                    <div class="search-box">
+                        <i class="bi bi-search"></i>
+                        <input type="search" placeholder="Buscar vaga..." aria-label="Buscar vaga" data-table-search>
+                    </div>
+                    <span class="record-count"><i class="bi bi-briefcase"></i> Vagas cadastradas</span>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table app-table align-middle mb-0" data-search-table>
+                        <thead>
+                        <tr>
+                            <th>Vaga</th>
+                            <th>Salário</th>
+                            <th>Expira em</th>
+                            <th class="text-end">Ações</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="vaga : ${vagas}">
+                            <td>
+                                <div class="job-cell">
+                                    <span class="job-avatar"><i class="bi bi-briefcase-fill"></i></span>
+                                    <div>
+                                        <strong th:text="${vaga.nome}">Nome da vaga</strong>
+                                        <small th:text="${vaga.descricao}">Descrição da vaga</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="salary-pill" th:text="${vaga.salario}">Salário informado</span>
+                            </td>
+                            <td th:text="${vaga.data}">Data informada</td>
+                            <td>
+                                <div class="table-actions">
+                                    <a class="btn btn-sm action-btn"
+                                       th:href="@{/{codigo}(codigo=${vaga.codigo})}"
+                                       title="Ver detalhes" aria-label="Ver detalhes">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                    <a class="btn btn-sm action-btn"
+                                       th:href="@{/editar-vaga(codigo=${vaga.codigo})}"
+                                       title="Editar vaga" aria-label="Editar vaga">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <a class="btn btn-sm action-btn danger"
+                                       th:href="@{/deletarVaga(codigo=${vaga.codigo})}"
+                                       data-confirm-delete="Tem certeza que deseja excluir esta vaga? Os candidatos vinculados também podem ser removidos."
+                                       title="Excluir vaga" aria-label="Excluir vaga">
+                                        <i class="bi bi-trash3"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr th:if="${vagas == null || #lists.isEmpty(vagas)}">
+                            <td colspan="4">
+                                <div class="empty-state">
+                                    <span class="empty-icon"><i class="bi bi-briefcase"></i></span>
+                                    <h3>Nenhuma vaga cadastrada</h3>
+                                    <p>Crie sua primeira oportunidade para começar.</p>
+                                    <a th:href="@{/cadastrarVaga}" class="btn app-btn-primary">Cadastrar vaga</a>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr class="d-none" data-search-empty>
+                            <td colspan="4">
+                                <div class="empty-state compact">
+                                    <span class="empty-icon"><i class="bi bi-search"></i></span>
+                                    <h3>Nenhum resultado</h3>
+                                    <p>Tente buscar por outro termo.</p>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
+    </main>
+</div>
+
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+</body>
+</html>

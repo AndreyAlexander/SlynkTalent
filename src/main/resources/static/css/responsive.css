@@ -1,0 +1,130 @@
+/* Responsividade compartilhada do sistema. */
+
+@media (max-width: 1100px) {
+    .form-page-grid,
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .helper-card {
+        display: none;
+    }
+
+    .welcome-shell {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome-visual {
+        display: none;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .app-sidebar {
+        transform: translateX(-102%);
+        box-shadow: 20px 0 50px rgba(0,0,0,.18);
+    }
+
+    body.mobile-menu-open .app-sidebar {
+        transform: translateX(0);
+    }
+
+    .mobile-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 1020;
+        background: rgba(24,31,40,.42);
+        backdrop-filter: blur(2px);
+    }
+
+    body.mobile-menu-open .mobile-backdrop {
+        display: block;
+    }
+
+    .app-main {
+        margin-left: 0;
+    }
+
+    .app-topbar {
+        padding-inline: 20px;
+    }
+
+    .app-topbar > div:first-child {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+    }
+
+    .app-topbar .eyebrow,
+    .app-topbar .page-subtitle {
+        grid-column: 2;
+    }
+
+    .topbar-actions {
+        display: none;
+    }
+}
+
+@media (max-width: 700px) {
+    .content-container {
+        padding-top: 22px;
+    }
+
+    .page-toolbar,
+    .table-toolbar,
+    .details-header,
+    .details-actions,
+    .form-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .page-toolbar .btn,
+    .details-actions .btn,
+    .form-actions .btn {
+        width: 100%;
+    }
+
+    .table-toolbar .search-box {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .record-count {
+        align-self: flex-start;
+    }
+
+    .details-title {
+        align-items: flex-start;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-item.full {
+        grid-column: auto;
+    }
+
+    .welcome-panel {
+        padding: 26px 20px;
+    }
+
+    .welcome-copy {
+        padding-block: 60px;
+    }
+
+    .welcome-copy h1 {
+        font-size: clamp(2.2rem, 13vw, 3.7rem);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+    }
+}

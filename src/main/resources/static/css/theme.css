@@ -1,0 +1,23 @@
+/* Tokens de cor, tipografia e box-sizing global. */
+
+:root {
+    --slynk-blue: #3082f9;
+    --slynk-blue-700: #1f66dc;
+    --slynk-blue-100: #eaf3ff;
+    --slynk-dark: #29313b;
+    --slynk-dark-2: #1f2630;
+    --slynk-text: #25313f;
+    --slynk-muted: #667085;
+    --slynk-border: #e5eaf0;
+    --slynk-surface: #f6f8fb;
+    --slynk-white: #ffffff;
+    --slynk-success: #168a5b;
+    --slynk-danger: #c83b4a;
+    --slynk-shadow: 0 14px 40px rgba(31, 38, 48, 0.08);
+    --slynk-radius: 18px;
+    --sidebar-width: 250px;
+}
+
+* {
+    box-sizing: border-box;
+}

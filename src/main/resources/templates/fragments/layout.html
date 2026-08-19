@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <title th:text="${title} + ' | SlynkTalent'">SlynkTalent</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/components.css}">
+    <link rel="stylesheet" th:href="@{/css/tables.css}">
+    <link rel="stylesheet" th:href="@{/css/details.css}">
+    <link rel="stylesheet" th:href="@{/css/responsive.css}">
+</head>
+<body>
+
+<aside class="app-sidebar" th:fragment="sidebar(active)">
+    <a class="brand" th:href="@{/}">
+        <span class="brand-logo-frame">
+            <img th:src="@{/img/slynk-logo.jpeg}" alt="Slynk Tech">
+        </span>
+        <span class="brand-copy">
+            <strong>SlynkTalent</strong>
+            <small>Recrutamento</small>
+        </span>
+    </a>
+
+    <nav class="sidebar-nav" aria-label="Navegação principal">
+        <a th:href="@{/}" class="nav-link-app" th:classappend="${active == 'inicio'} ? ' active' : ''">
+            <i class="bi bi-grid-1x2"></i>
+            <span>Início</span>
+        </a>
+
+        <a th:href="@{/vagas}" class="nav-link-app" th:classappend="${active == 'vagas'} ? ' active' : ''">
+            <i class="bi bi-briefcase"></i>
+            <span>Vagas</span>
+        </a>
+
+        <a th:href="@{/cadastrarVaga}" class="nav-link-app" th:classappend="${active == 'cadastrar'} ? ' active' : ''">
+            <i class="bi bi-plus-circle"></i>
+            <span>Nova vaga</span>
+        </a>
+    </nav>
+
+    <div class="sidebar-footer">
+        <div class="sidebar-company">
+            <span class="company-avatar">ST</span>
+            <span>
+                <strong>Slynk Tech</strong>
+                <small>People & Talent</small>
+            </span>
+        </div>
+    </div>
+</aside>
+
+<header class="app-topbar" th:fragment="topbar(title, subtitle)">
+    <div>
+        <button class="mobile-menu-button d-lg-none" type="button" data-mobile-menu aria-label="Abrir menu">
+            <i class="bi bi-list"></i>
+        </button>
+        <p class="eyebrow mb-1">SlynkTalent</p>
+        <h1 class="page-title" th:text="${title}">Página</h1>
+        <p class="page-subtitle mb-0" th:if="${subtitle != null}" th:text="${subtitle}"></p>
+    </div>
+
+    <div class="topbar-actions">
+        <span class="status-pill">
+            <span class="status-dot"></span>
+            Sistema online
+        </span>
+    </div>
+</header>
+
+<div th:fragment="flash" class="flash-area">
+    <div th:if="${mensagem != null}" class="alert app-alert alert-dismissible fade show" role="alert"
+         th:classappend="${#strings.startsWith(mensagem, 'Verifique')} ? ' alert-warning' : ' alert-success'">
+        <i class="bi"
+           th:classappend="${#strings.startsWith(mensagem, 'Verifique')} ? ' bi-exclamation-triangle-fill' : ' bi-check-circle-fill'"></i>
+        <span th:text="${mensagem}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+    </div>
+
+    <div th:if="${sucess != null}" class="alert app-alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle-fill"></i>
+        <span th:text="${sucess}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+    </div>
+
+    <div th:if="${mensagemErro != null}" class="alert app-alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle-fill"></i>
+        <span th:text="${mensagemErro}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+    </div>
+</div>
+
+<th:block th:fragment="scripts">
+    <div class="mobile-backdrop" data-mobile-backdrop></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/slynk.js}"></script>
+</th:block>
+
+</body>
+</html>
